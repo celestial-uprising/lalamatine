@@ -1,4 +1,4 @@
-# Celestial Uprising &nbsp; [![bluebuild build badge](https://github.com/celestial-uprising/framework/actions/workflows/build.yml/badge.svg)](https://github.com/celestial-uprising/framework/actions/workflows/build.yml)
+# *Lalamatine* &nbsp; [![bluebuild build badge](https://github.com/celestial-uprising/framework/actions/workflows/build.yml/badge.svg)](https://github.com/celestial-uprising/framework/actions/workflows/build.yml)
 
 *Celestial Uprising's* Lalamatine *is proudly built for all, by lesbidoodles and their coven of magical rabbits*
 
