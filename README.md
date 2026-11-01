@@ -1,30 +1,61 @@
-# *Lalamatine* &nbsp; [![bluebuild build badge](https://github.com/celestial-uprising/framework/actions/workflows/build.yml/badge.svg)](https://github.com/celestial-uprising/framework/actions/workflows/build.yml)
+# Celestial Uprising's Release Track &nbsp; [![bluebuild build badge](https://github.com/celestial-uprising/lalamatine/actions/workflows/build.yml/badge.svg)](https://github.com/celestial-uprising/lalamatine/actions/workflows/build.yml)
 
-*Celestial Uprising's* Lalamatine *is proudly built for all, by lesbidoodles and their coven of magical rabbits*
+## *Fedora-Bootc 44* + *Lesbidoodle Rabbit Coven Magic* = *Lalamatine*
 
-## Spins
+- *Yazi* | rapid & beautiful rusty file-manager 
+- *Flyline* | bash plugin, cause thinking shouldn't require spelling degrees
+- *Corgi* | modern-day t-mux/herdr replacement with intense QoL improvements and optional agent integration
+- *Neovim* | cli Editor, with lazyvim's dependencies preconfigured
+- *Siltide Amdtop Nvtop Btop Radeontop S-tui Powertop* | detailed insights for all type of hardware
+- *Pi-Bolt Llmfit* | llm harness, pre-compiled Pi Agent for maximum speed with plugins; local llm tui research tool
+- *Tailscale* | wireguard infused protocol, vpn, secure access, and pseudo-local networking
+- *Wrkflw Upmd Gama* | run & manage GH actions locally with MD, and monitor remote GH actions in the terminal
+- *Glow Treemd Mdtt* | render MD, see it side-by-side, or create MD tables, all in the terminal
+- *Kmon Netop Lazyjournal* | constructively useful administrative tools
+- *Eget* | add binaries to the immutable system quickly
+- *Pastel Termpicker* | color picker, color-code converter, color-code look-up tool - all in the terminal
 
-- *virt / headless / headless-nv / mini / mini-nv / muse / muse-nv / dev / dev-nv / gg / gg-nv / unholy / unholy-nv*
+- *Rhun* | IDE written in assembly, truly absurd speed in a slim footprint
+- *Kitty* | terminal emulator, preconfigured for Celestial-Uprising and assigned to `CapsLock+Enter`
+- *Zen-Browser* | lightweight, appeasing design, compatible with firefox accounts
+- *Niri* | rust built tiling window manager of the future
+- *Waybar* | simple, yet pleasing (intended to be replaced by a rust native tool...)
+- *Rofi* | launcher, preconfigured for Celestial-Uprising and assigned to `CapsLock+d`
+
+## Images
+
+- *lalamatine*  -- gracefully unstoppable
+- *lalamatine-dev*  -- clean & classy; virtualization tools included
+- *lalamatine-headless*  -- deployable and reliable
+- *lalamatine-gg*  -- minimal desktop, maximum fps; steam/gamescope/mangohud
+- *lalamatine-muse*  -- elegant workspace with creator tools preinstalled
+- *lalamatine-unholy*  -- work hard, play hard, build anything
+- *lalamatine-virt*  -- secure and specialized for qemu + kvm virtual enviroments
 
 ## Installation
 
-To rebase an existing **atomic**/**ucore**/**ublue** installation to the latest build:
+    sudo bootc switch ghcr.io/celestial-uprising/${IMAGE}:latest
 
-- First rebase to the unsigned image:
+## ISO
 
-  ```bash
-  sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/celestial-uprising/${IMAGE_NAME}:latest && sudo systemctl reboot
-  ```
-- Then rebase to the signed image:
+## *Celestial-Uprising is proudly built for all, by lesbidoodles and their coven of magical rabbits*
 
-  ```bash
-  sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/celestial-uprising/${IMAGE_NAME}:latest && sudo systemctl reboot
-  ```
+### *Dog-fooding*
 
-## Verification
+*Testing and development is performed on a small array of ryzen based machines; by a coven of elusive rabbits with whom gaia has bestowed the privilege of magic.*
 
-These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
+#### *Personal Machines*
 
-```bash
-cosign verify --key cosign.pub ghcr.io/celestial-uprising/framework
-```
+| hostid | spin | cpu | memory | gpus |
+| :--- | :--- | :--- | :--- | :--- |
+|rhiannon|oglaroon|AMD A4-9120*c* R4 2C+3G *2c/2t*|4GiB *1866MHz*|Radeon iGPU|
+|bella|oglaroon-headless|AMD Ryzen 7 5700*g* *8c/16t*|128GiB *3200MHz*|Vega iGPU + RX 580 *8GiB*|
+|lily|oglaroon-virt|AMD EPYC Virtualized *6c/6t*|12GiB *virtualized*|---|
+
+- *temporarily reassigned to testing and development related to Ubuntu 27.04 Tenacious T-Rex*
+
+| hostid | os | cpu | memory | gpus |
+| :--- | :--- | :--- | :--- | :--- |
+|maebh|t-rex *alpha*|AMD Ryzen 7 5800*h* *8c/16t*|64GiB *3200MHz*|Vega iGPU + *RTX*3050*ti* Mobile dGPU *4GiB*|
+|ada|t-rex *alpha*|AMD Ryzen 5 5600*x* *6c/12t*|64GiB *3200MHz*|*GP*100 *16GB* + *RTX*3070 *8GiB*|
+

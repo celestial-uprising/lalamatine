@@ -1,0 +1,9 @@
+cosign.key
+cosign.private
+/Containerfile
+*.iso
+*.iso-CHECKSUM
+/.bluebuild-scripts_*
+*.bak
+/files/aocc-tar/*.sh
+/files/aocc-rpm/*.sh

@@ -1,0 +1,212 @@
+name: lalamatine-core
+description: Celestial Uprising's Immutable Operating System
+base-image: quay.io/fedora/fedora-bootc
+image-version: 44
+stages:
+  - name: driver-builder
+    from: quay.io/fedora/fedora-bootc:44
+    modules:
+      - type: containerfile
+        snippets:
+          - RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+          - RUN dnf install -y https://zfsonlinux.org/fedora/zfs-release-3-1.fc44.noarch.rpm
+          - RUN export KVER=$(cd /usr/lib/modules && echo *) && dnf install -y kernel-devel-$KVER akmod-nvidia zfs-dkms
+          - RUN export KVER=$(cd /usr/lib/modules && echo *) && akmods --kernels $KVER --force && dkms autoinstall -k $KVER && dnf clean all
+  - name: rusty
+    from: quay.io/fedora/fedora:44
+    modules:
+      - type: copy
+        src: files/cargo-nobinstall.md
+        dest: /tmp/cargo-nobinstall.md
+      - type: copy
+        src: files/cargo-binstall.md
+        dest: /tmp/cargo-binstall.md
+      - type: copy
+        src: files/goblin-install.md
+        dest: /tmp/goblin-install.md
+      - type: script
+        snippets:
+          - mkdir -p /tmp/bin
+          - |
+            dnf5 upgrade -y && dnf5 install -y \
+              cargo rustc golang pkg-config make gcc-c++ cmake tar gzip curl \
+              libdrm-devel libpcap-devel openssl-devel zlib-devel alsa-lib-devel
+            curl -fsSL https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-x86_64-unknown-linux-musl.tgz | tar -xz -C /usr/bin cargo-binstall
+            MD_FILE="/tmp/cargo-nobinstall.md"
+            while read -r line || [ -n "$line" ]; do
+              case "$line" in
+                *"cargo install"*)
+                  $line --root /tmp
+                  ;;
+              esac
+            done < "$MD_FILE"
+            MD_FILE1="/tmp/cargo-binstall.md"
+            while read -r line || [ -n "$line" ]; do
+              case "$line" in
+                *"cargo binstall"*)
+                  $line --root /tmp
+                  ;;
+              esac
+            done < "$MD_FILE"
+            MD_FILE2="/tmp/goblin-install.md"
+            if [ -f "$MD_FILE2" ]; then
+              while read -r line || [ -n "$line" ]; do
+                case "$line" in
+                  *"go install"*)
+                    if ! env GOBIN=/tmp/bin $line; then
+                      echo "ERROR: Failed to install Go tool: $line"
+                    fi
+                    ;;
+                esac
+              done < "$MD_FILE2"
+            fi
+            dnf5 clean all
+modules:
+  - type: os-release
+    properties:
+      NAME: "Lalamatine"
+      PRETTY_NAME: "Lalamatine b01 by Celestial Uprising"
+      VERSION_CODENAME: "tartine"
+      ID_LIKE: fedora
+      HOME_URL: "https://github.com/celestial-uprising/framework/"
+      BUG_REPORT_URL: "https://github.com/celestial-uprising/framework/"
+      VARIANT: "lalamatine-core"
+      RELEASE_TYPE: "beta"
+  - type: kargs
+    kargs:
+      - amd_iommu=on
+      - iommu=pt
+      - kvm_amd.nested=1
+      - split_lock_detect=off
+      - transparent_hugepage=always
+      - kvm.ignore_msrs=1
+      - net.ifnames=0
+      - rd.driver.blacklist=nouveau
+      - modprobe.blacklist=nouveau
+      - nvidia-drm.modeset=1
+  - type: containerfile
+    snippets:
+      - RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+      - RUN dnf install -y https://zfsonlinux.org/fedora/zfs-release-3-1.fc44.noarch.rpm
+  - type: dnf
+    install:
+      install-weak-deps: false
+      packages:
+        - xorg-x11-drv-nvidia-cuda
+        - libva-nvidia-driver
+        - zfs
+        - zram-generator-defaults
+        - whois
+        - distrobox
+        - sshfs
+        - rsync
+        - iw
+        - iwd
+        - iwlwifi-mvm-firmware
+        - NetworkManager-wifi
+        - pciutils
+        - usbutils
+        - kernel-modules-extra
+        - glibc-langpack-en
+        - tailscale
+        - libvirt-client
+        - vim
+        - nmap
+        - traceroute
+        - uv
+        - neovim
+        - python3-neovim
+        - luarocks
+        - tree-sitter-cli
+        - fd-find
+        - ripgrep
+        - zoxide
+        - bat
+        - eza
+        - fzf
+        - pdfgrep
+        - powertop
+        - nvtop
+        - radeontop
+        - s-tui
+        - lm_sensors
+        - btop
+        - gdu
+        - pastel
+        - git
+        - make
+        - gcc
+        - fontconfig-devel
+        - wget
+        - plymouth-theme-spinner
+        - nodejs
+        - npm
+        - rustup
+        - libquadmath
+        - libquadmath-devel
+        - glibc
+        - glibc-devel
+        - ccache
+        - llvm
+        - lld
+        - flex
+        - dwarves
+        - bison
+        - bc
+        - pkgconf
+        - ninja-build
+        - llvm-devel 
+        - libomp
+        - libomp-devel
+        - golang
+        - openblas
+        - openblas-devel
+        - vulkan-loader
+        - vulkan-loader-devel
+        - vulkan-headers
+        - vulkan-tools
+        - mimalloc
+        - mimalloc-devel
+  - type: containerfile
+    snippets:
+      - COPY --from=driver-builder /usr/lib/modules/ /usr/lib/modules/
+      - COPY --from=driver-builder /var/lib/dkms/ /var/lib/dkms/
+      - RUN echo "blacklist nouveau" > /etc/modprobe.d/blacklist-nouveau.conf
+      - RUN systemctl enable zfs.target zfs-import-scan.service zfs-mount.service
+  - type: copy
+    from: rusty
+    src: /tmp/bin/
+    dest: /usr/bin/
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - VictorMono
+  - type: files
+    files:
+      - source: libflyline
+        destination: /usr/lib/bash/libflyline.so
+  - type: files
+    files:
+      - source: system/etc/profile.d/flyline.sh
+        destination: /etc/profile.d/
+  - type: files
+    files:
+      - source: system/etc/profile.d/locale.sh
+        destination: /etc/profile.d/
+  - type: files
+    files:
+      - source: system/etc/profile.d/aliases.sh
+        destination: /etc/profile.d/
+  - type: files
+    files:
+      - source: aocc-rpm
+        destination: /tmp
+  - type: script
+    scripts:
+      - corgi.sh
+      - pi-bolt.sh
+      - aocc.sh
+      - annoyances.sh
+      - regenerateinitramfs.sh
+  - type: wayblue-signing
+    source: local
