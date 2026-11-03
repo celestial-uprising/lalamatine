@@ -95,6 +95,7 @@ modules:
         - xorg-x11-drv-nvidia-cuda
         - libva-nvidia-driver
         - zfs
+        - glibc-langpack-en
         - podman-compose
         - podman-docker
         - podman-remote
