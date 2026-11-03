@@ -108,8 +108,8 @@ modules:
         - sysstat
         - strace
         - tcpdump
-        - amd-ucode
-        - intel-ucode
+        - amd-ucode-firmware
+        - microcode_ctl
         - whois
         - distrobox
         - sshfs
@@ -117,6 +117,8 @@ modules:
         - iw
         - iwd
         - iwlwifi-mvm-firmware
+        - iwlbluetooth-firmware
+        - mediatek-firmware
         - NetworkManager-wifi
         - pciutils
         - usbutils
