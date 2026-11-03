@@ -10,7 +10,8 @@ stages:
         snippets:
           - RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
           - RUN dnf install -y https://zfsonlinux.org/fedora/zfs-release-3-1.fc44.noarch.rpm
-          - RUN export KVER=$(cd /usr/lib/modules && echo *) && dnf install -y kernel-devel-$KVER akmod-nvidia zfs-dkms
+          - RUN export KVER=$(cd /usr/lib/modules && echo *) && dnf install -y akmod-nvidia zfs-dkms
+#          - RUN export KVER=$(cd /usr/lib/modules && echo *) && dnf install -y kernel-devel-$KVER akmod-nvidia zfs-dkms
           - RUN export KVER=$(cd /usr/lib/modules && echo *) && akmods --kernels $KVER --force && dkms autoinstall -k $KVER && dnf clean all
   - name: rusty
     from: quay.io/fedora/fedora:44
