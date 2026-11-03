@@ -65,8 +65,8 @@ modules:
   - type: os-release
     properties:
       NAME: "Lalamatine"
-      PRETTY_NAME: "Lalamatine b01 by Celestial Uprising"
-      VERSION_CODENAME: "tartine"
+      PRETTY_NAME: "Lalamatine b02 by Celestial Uprising"
+      VERSION_CODENAME: "staypuft"
       ID_LIKE: fedora
       HOME_URL: "https://github.com/celestial-uprising/framework/"
       BUG_REPORT_URL: "https://github.com/celestial-uprising/framework/"
@@ -141,32 +141,6 @@ modules:
         - plymouth-theme-spinner
         - nodejs
         - npm
-        - rustup
-        - libquadmath
-        - libquadmath-devel
-        - glibc
-        - glibc-devel
-        - ccache
-        - llvm
-        - lld
-        - flex
-        - dwarves
-        - bison
-        - bc
-        - pkgconf
-        - ninja-build
-        - llvm-devel 
-        - libomp
-        - libomp-devel
-        - golang
-        - openblas
-        - openblas-devel
-        - vulkan-loader
-        - vulkan-loader-devel
-        - vulkan-headers
-        - vulkan-tools
-        - mimalloc
-        - mimalloc-devel
   - type: containerfile
     snippets:
       - COPY --from=driver-builder /usr/lib/modules/ /usr/lib/modules/
@@ -197,15 +171,10 @@ modules:
     files:
       - source: system/etc/profile.d/aliases.sh
         destination: /etc/profile.d/
-  - type: files
-    files:
-      - source: aocc-rpm
-        destination: /tmp
   - type: script
     scripts:
       - corgi.sh
       - pi-bolt.sh
-      - aocc.sh
       - annoyances.sh
       - regenerateinitramfs.sh
   - type: wayblue-signing
