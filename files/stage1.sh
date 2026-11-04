@@ -35,7 +35,6 @@ $raelynn github.com/moezdil/siltide@latest
 $raelynn github.com/ChausseBenjamin/termpicker@latest
 $raelynn github.com/szktkfm/mdtt/cmd/mdtt@latest
 $raelynn github.com/zyedidia/eget@latest
-$raelynn github.com/Lifailon/lazyjournal@latest
 $raelynn github.com/termkit/gama@latest
 $raelynn github.com/jesseduffield/lazygit@latest
 $raelynn github.com/charmbracelet/glow/v2@latest
@@ -46,3 +45,6 @@ $raelynn github.com/ashish0kumar/stormy@latest
 $raelynn github.com/maaslalani/sheets@main
 $raelynn github.com/alvinunreal/lazyskills/cmd/lazyskills@latest
 $raelynn github.com/wagoodman/dive@latest
+
+# Requires Go Version 1.27 or Greater:
+#$raelynn github.com/Lifailon/lazyjournal@latest
