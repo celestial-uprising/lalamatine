@@ -12,23 +12,27 @@ stages:
           - RUN dnf install -y https://zfsonlinux.org/fedora/zfs-release-3-1.fc44.noarch.rpm
           - RUN export KVER=$(cd /usr/lib/modules && echo *) && dnf install -y akmod-nvidia zfs-dkms
           - RUN export KVER=$(cd /usr/lib/modules && echo *) && akmods --kernels $KVER --force && dkms autoinstall -k $KVER && dnf clean all
-  - name: stage1
+  - name: builder
     from: quay.io/fedora/fedora:44
     modules:
       - type: copy
-        src: files/stage1.sh
+        src: files/scripts/stage1.sh
         dest: /tmp/stage1.sh
+      - type: copy
+        src: files/scripts/stage2.sh
+        dest: /tmp/stage2.sh
       - type: script
         snippets:
           - mkdir -p /tmp/bin
           - |
             bash /tmp/stage1.sh
+            bash /tmp/stage2.sh
 modules:
   - type: os-release
     properties:
       NAME: "Lalamatine"
-      PRETTY_NAME: "Lalamatine b05 by Celestial Uprising"
-      VERSION_CODENAME: "crabapple"
+      PRETTY_NAME: "Lalamatine b06 by Celestial Uprising"
+      VERSION_CODENAME: "pixiestik"
       ID_LIKE: fedora
       HOME_URL: "https://github.com/celestial-uprising/framework/"
       BUG_REPORT_URL: "https://github.com/celestial-uprising/framework/"
@@ -57,6 +61,8 @@ modules:
         - xorg-x11-drv-nvidia-cuda
         - libva-nvidia-driver
         - zfs
+        - firewalld
+        - nftables
         - zram-generator-defaults
         - glibc-langpack-en
         - podman-compose
@@ -127,7 +133,7 @@ modules:
       - RUN echo "blacklist nouveau" > /etc/modprobe.d/blacklist-nouveau.conf
       - RUN systemctl enable zfs.target zfs-import-scan.service zfs-mount.service
   - type: copy
-    from: stage1
+    from: builder
     src: /tmp/bin/
     dest: /usr/bin/
   - type: fonts
@@ -154,12 +160,13 @@ modules:
     system:
       enabled:
         - tailscaled.service
+        - firewalld.service
+        - iwd.service
     user:
       enabled:
         - podman.socket
   - type: script
     scripts:
-      - corgi.sh
       - pi-bolt.sh
       - annoyances.sh
       - regenerateinitramfs.sh
