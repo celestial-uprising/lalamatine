@@ -27,8 +27,8 @@ modules:
   - type: os-release
     properties:
       NAME: "Lalamatine"
-      PRETTY_NAME: "Lalamatine b04 by Celestial Uprising"
-      VERSION_CODENAME: "dragonsbreath"
+      PRETTY_NAME: "Lalamatine b05 by Celestial Uprising"
+      VERSION_CODENAME: "crabapple"
       ID_LIKE: fedora
       HOME_URL: "https://github.com/celestial-uprising/framework/"
       BUG_REPORT_URL: "https://github.com/celestial-uprising/framework/"
@@ -57,6 +57,7 @@ modules:
         - xorg-x11-drv-nvidia-cuda
         - libva-nvidia-driver
         - zfs
+        - zram-generator-defaults
         - glibc-langpack-en
         - podman-compose
         - podman-docker
