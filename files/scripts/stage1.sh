@@ -4,11 +4,19 @@ set -oue pipefail
 mkdir -p /tmp/bin
 
 dnf5 upgrade -y && dnf5 install -y \
-	cargo rustc \
-	golang pkg-config \
-	make gcc-c++ \
-	cmake tar gzip curl \
-	libdrm-devel libpcap-devel \
+	gtk4-layer-shell-devel \
+	cargo \
+	rustc \
+	golang \
+	pkg-config \
+	make \
+	gcc-c++ \
+	cmake \
+	tar \
+	gzip \
+	curl \
+	libdrm-devel \
+	libpcap-devel \
 	alsa-lib-devel \
 	pipewire-jack-audio-connection-kit-devel
 
@@ -29,6 +37,7 @@ raelynn="env GOBIN=/tmp/bin go install"
 $raelynn github.com/moezdil/siltide@latest
 $raelynn github.com/szktkfm/mdtt/cmd/mdtt@latest
 $raelynn github.com/zyedidia/eget@latest
+$raelynn github.com/Lifailon/lazyjournal@latest
 $raelynn github.com/termkit/gama@latest
 $raelynn github.com/jesseduffield/lazygit@latest
 $raelynn github.com/charmbracelet/glow/v2@latest
@@ -37,6 +46,3 @@ $raelynn github.com/chojs23/ec/cmd/ec@latest
 $raelynn github.com/fumiyas/qrc/cmd/qrc@latest
 $raelynn github.com/alvinunreal/lazyskills/cmd/lazyskills@latest
 $raelynn github.com/wagoodman/dive@latest
-
-# Requires Golang >=1.27
-$raelynn github.com/Lifailon/lazyjournal@latest
