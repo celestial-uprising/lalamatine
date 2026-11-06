@@ -49,6 +49,15 @@ modules:
         destination: /etc/udev/rules.d/99-cpu-governor.rules
       - source: 99-workstation-perf.conf
         destination: /etc/sysctl.d/99-workstation-perf.conf
+  - type: systemd
+    system:
+      enabled:
+        - virtqemud.socket
+        - virtnetworkd.socket
+        - virtnodedevd.socket
+        - virtsecretd.socket
+        - virtstoraged.socket
+        - virtqemud.service
   - type: script
     scripts:
       - regenerateinitramfs.sh
