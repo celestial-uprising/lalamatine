@@ -61,6 +61,7 @@ modules:
         - xorg-x11-drv-nvidia-cuda
         - libva-nvidia-driver
         - zfs
+        - gtk4-layer-shell
         - tmux
         - firewalld
         - nftables
