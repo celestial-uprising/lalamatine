@@ -30,13 +30,14 @@ $ingrid netop
 $ingrid terminal_gameboy
 $ingrid asak
 
-cargo binstall --root /tmp ironbar wrkflw kmon treemd llmfit yazi-fm yazi-cli viddy xan doxx diskonaut xleak serie
+cargo binstall --root /tmp wrkflw kmon treemd llmfit yazi-fm yazi-cli viddy xan doxx diskonaut xleak serie
 
 raelynn="env GOBIN=/tmp/bin go install"
 
 $raelynn github.com/moezdil/siltide@latest
 $raelynn github.com/szktkfm/mdtt/cmd/mdtt@latest
 $raelynn github.com/zyedidia/eget@latest
+$raelynn github.com/Lifailon/lazyjournal@latest
 $raelynn github.com/termkit/gama@latest
 $raelynn github.com/jesseduffield/lazygit@latest
 $raelynn github.com/charmbracelet/glow/v2@latest

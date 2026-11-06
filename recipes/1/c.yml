@@ -31,8 +31,8 @@ modules:
   - type: os-release
     properties:
       NAME: "Lalamatine"
-      PRETTY_NAME: "Lalamatine b08 by Celestial Uprising"
-      VERSION_CODENAME: "ironbru"
+      PRETTY_NAME: "Lalamatine b09 by Celestial Uprising"
+      VERSION_CODENAME: "candyglass"
       ID_LIKE: fedora
       HOME_URL: "https://github.com/celestial-uprising/framework/"
       BUG_REPORT_URL: "https://github.com/celestial-uprising/framework/"
@@ -55,16 +55,13 @@ modules:
       - RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
       - RUN dnf install -y https://zfsonlinux.org/fedora/zfs-release-3-1.fc44.noarch.rpm
   - type: dnf
-    repos:
-      copr:
-        - varlad/zellij
     install:
       install-weak-deps: false
       packages:
         - xorg-x11-drv-nvidia-cuda
         - libva-nvidia-driver
         - zfs
-        - zellij
+        - tmux
         - firewalld
         - nftables
         - zram-generator-defaults
