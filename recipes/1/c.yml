@@ -31,8 +31,8 @@ modules:
   - type: os-release
     properties:
       NAME: "Lalamatine"
-      PRETTY_NAME: "Lalamatine b10 by Celestial Uprising"
-      VERSION_CODENAME: "marmalade"
+      PRETTY_NAME: "Lalamatine b11 by Celestial Uprising"
+      VERSION_CODENAME: "nerds"
       ID_LIKE: fedora
       HOME_URL: "https://github.com/celestial-uprising/framework/"
       BUG_REPORT_URL: "https://github.com/celestial-uprising/framework/"
@@ -120,9 +120,6 @@ modules:
         - gdu
         - pastel
         - git
-        - make
-        - gcc
-        - fontconfig-devel
         - wget
         - plymouth-theme-spinner
         - nodejs

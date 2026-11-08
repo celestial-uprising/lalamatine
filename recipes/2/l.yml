@@ -10,15 +10,11 @@ stages:
       - type: copy
         src: files/scripts/stage3.sh
         dest: /tmp/stage3.sh
-      - type: copy
-        src: files/scripts/stage4.sh
-        dest: /tmp/stage4.sh
       - type: script
         snippets:
           - mkdir -p /tmp/bin
           - |
             bash /tmp/stage3.sh
-            bash /tmp/stage4.sh
 modules:
   - type: os-release
     properties:
@@ -95,10 +91,6 @@ modules:
     from: builder
     src: /tmp/bin/
     dest: /usr/bin/
-  - type: copy
-    from: builder
-    src: /tmp/anyrun-plugins/
-    dest: /etc/anyrun/plugins/
   - type: script
     scripts:
       - rhun.sh
@@ -115,6 +107,7 @@ modules:
         - sddm.service
   - type: script
     scripts:
+      - perm-fix.sh
       - regenerateinitramfs.sh
   - type: wayblue-signing
     source: local
