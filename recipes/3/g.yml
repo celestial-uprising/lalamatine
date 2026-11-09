@@ -28,7 +28,7 @@ modules:
     files:
       - source: extras/99-cpu-governor.rules
         destination: /etc/udev/rules.d/99-cpu-governor.rules
-      - source: extra/99-workstation-perf.conf
+      - source: extras/99-workstation-perf.conf
         destination: /etc/sysctl.d/99-workstation-perf.conf
   - type: script
     scripts:
