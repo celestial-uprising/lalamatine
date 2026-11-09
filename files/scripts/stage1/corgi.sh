@@ -1,16 +1,28 @@
 #!/usr/bin/env bash
 set -euo pipefail
-REPO_URL="https://github.com/tals/corgi.git"
-WORK_DIR="/tmp/corgi"
-BINARY_DEST="/tmp/bin/corgi"
-git clone --depth 1 "$REPO_URL" "$WORK_DIR"
-cd "$WORK_DIR"
-dnf install -y zig nodejs npm curl unzip perl-Digest-SHA
+
+dnf install -y \
+    zig \
+    curl \
+    unzip \
+    perl-Digest-SHA \
+    tar \
+    gzip
+
 curl -fsSL https://bun.com/install | BUN_INSTALL=/usr/local bash
-if [ ! -d "node_modules" ]; then
-  bun install --frozen-lockfile
-fi
+
+TAG="20261101T231906Z-adecbb191a40"
+TARBALL_URL="https://github.com/tals/corgi/archive/refs/tags/${TAG}.tar.gz"
+
+curl -sL "${TARBALL_URL}" | tar -xz -C /tmp/
+
+cd "/tmp/corgi-${TAG}"
+
+bun install --frozen-lockfile
 bun build.ts
-mkdir -p "$(dirname "$BINARY_DEST")"
-cp dist/corgi "$BINARY_DEST"
-chmod +x "$BINARY_DEST"
+
+cp dist/corgi /tmp/bin/corgi
+chmod +x /tmp/bin/corgi
+
+rm -rf "/tmp/corgi-${TAG}" ~/.bun/install/cache
+
