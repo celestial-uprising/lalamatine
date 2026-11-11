@@ -26,11 +26,12 @@ stages:
             bash /tmp/cargo.sh
             bash /tmp/binstall.sh
             bash /tmp/golang.sh
+            bash /tmp/tidemail.sh
 modules:
   - type: os-release
     properties:
       NAME: "Lalamatine"
-      PRETTY_NAME: "Lalamatine b14 by Celestial Uprising"
+      PRETTY_NAME: "Lalamatine b15 by Celestial Uprising"
       VERSION_CODENAME: "strawbolotl"
       ID_LIKE: fedora
       HOME_URL: "https://github.com/celestial-uprising/framework/"

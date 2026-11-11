@@ -7,6 +7,7 @@
 - *Yazi* | rapid & beautiful rusty file-manager 
 - *Flyline* | bash plugin, cause thinking shouldn't require spelling degrees
 - *Rmux, Zellij* | modern-day, rusty t-mux replacements with intense QoL improvements
+- *Tidemail* | beautiful tui mail client, compatible with gmail and 365
 - *Neovim* | cli Editor, with lazyvim's dependencies preconfigured
 - *Siltide, Nvtop, Btop* | detailed insights for all type of hardware
 - *Pi-Bolt* | Pi harness; pre-compiled for maximum speed with functionally elegant plugins OOTB
@@ -18,7 +19,7 @@
 
 - *Rhun* | IDE written in assembly, truly absurd speed in a slim footprint
 - *Kitty* | terminal emulator, preconfigured for Celestial-Uprising and assigned to `CapsLock+Enter`
-- *Zen-Browser* | lightweight, appeasing design, compatible with firefox accounts
+- *Zen-Browser* | lightweight, built on the Gecko Engine, compatible with Firefox accounts
 - *Niri* | rust built tiling window manager of the future
 - *Ironbar* | modern, niri-native top-bar rebuilt by the Celestial Uprising team
 - *Rofi* | launcher, preconfigured for Celestial-Uprising and assigned to `CapsLock+d`
