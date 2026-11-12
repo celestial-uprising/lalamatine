@@ -25,9 +25,13 @@ modules:
       - amdgpu.ppfeaturemask=0xffffffff
       - amdgpu.sg_display=0
   - type: dnf
+    repos:
+      copr:
+        - archjun/mgba
     install:
       install-weak-deps: false
       packages:
+        - mgba-qt
         - nautilus
         - gtk4 
         - gtk4-layer-shell

@@ -27,15 +27,16 @@ stages:
             bash /tmp/binstall.sh
             bash /tmp/golang.sh
             bash /tmp/tidemail.sh
+            bash /tmp/corgi.sh
 modules:
   - type: os-release
     properties:
       NAME: "Lalamatine"
-      PRETTY_NAME: "Lalamatine b15 by Celestial Uprising"
-      VERSION_CODENAME: "strawbolotl"
+      PRETTY_NAME: "Lalamatine b16 by Celestial Uprising"
+      VERSION_CODENAME: "raspolotl"
       ID_LIKE: fedora
-      HOME_URL: "https://github.com/celestial-uprising/framework/"
-      BUG_REPORT_URL: "https://github.com/celestial-uprising/framework/"
+      HOME_URL: "https://github.com/celestial-uprising/lalamatine/"
+      BUG_REPORT_URL: "https://github.com/celestial-uprising/lalamatine/"
       VARIANT: "lalamatine-core"
       RELEASE_TYPE: "beta"
   - type: kargs
