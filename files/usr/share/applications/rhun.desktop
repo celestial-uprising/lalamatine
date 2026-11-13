@@ -2,8 +2,7 @@
 Type=Application
 Name=rhun
 GenericName=Code Editor
-Comment=A small and fast code editor written in assembly
-Exec=/usr/bin/rhun %F
+Exec=rhun %F
 Icon=rhun
 Terminal=false
 Categories=Development;TextEditor;Utility;
