@@ -24,6 +24,8 @@ stages:
           - dnf5 upgrade -y
           - |
             bash /tmp/netop.sh
+            bash /tmp/asak.sh
+            bash /tmp/terminactory.sh
             bash /tmp/binstall.sh
             bash /tmp/golang.sh
             bash /tmp/tidemail.sh
@@ -32,7 +34,7 @@ modules:
   - type: os-release
     properties:
       NAME: "Lalamatine"
-      PRETTY_NAME: "Lalamatine b17 by Celestial Uprising"
+      PRETTY_NAME: "Lalamatine b18 by Celestial Uprising"
       VERSION_CODENAME: "raspolotl"
       ID_LIKE: fedora
       HOME_URL: "https://github.com/celestial-uprising/lalamatine/"
@@ -62,6 +64,15 @@ modules:
         - xorg-x11-drv-nvidia-cuda
         - libva-nvidia-driver
         - zfs
+        - distcc
+        - ccache
+        - smartmontools
+        - radare2
+        - just
+        - ov
+        - asciinema
+        - rizin
+        - gh
         - firewalld
         - nftables
         - zram-generator-defaults

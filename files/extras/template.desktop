@@ -1,8 +1,10 @@
 [Desktop Entry]
 Type=Application
-Name=LazyJournal
-Exec=lazyjournal
-Icon=/usr/share/pixmaps/lazyjournal.png
+Name=
+GenericName=
+Comment=
+Exec=
+Icon=/usr/share/pixmaps/
 Terminal=true
 Categories=ConsoleOnly;
 Keywords=terminal;

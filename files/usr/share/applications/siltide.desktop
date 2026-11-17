@@ -6,3 +6,4 @@ Icon=/usr/share/pixmaps/siltide.svg
 Terminal=true
 Categories=ConsoleOnly;
 Keywords=terminal;
+GenericName=accelerator fleet monitor

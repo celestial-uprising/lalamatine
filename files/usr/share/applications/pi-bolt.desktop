@@ -6,3 +6,4 @@ Icon=/usr/share/pixmaps/pi-bolt.svg
 Terminal=true
 Categories=ConsoleOnly;
 Keywords=terminal;
+GenericName=Pi you already use compiled to machine code
