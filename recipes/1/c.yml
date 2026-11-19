@@ -27,16 +27,18 @@ stages:
             bash /tmp/asak.sh
             bash /tmp/terminactory.sh
             bash /tmp/binstall.sh
-            bash /tmp/golang.sh
+            bash /tmp/golang-44.sh
             bash /tmp/tidemail.sh
             bash /tmp/corgi.sh
+            bash /tmp/kb.sh
+            bash /tmp/llmv.sh
             bash /tmp/pi-bolt.sh
 modules:
   - type: os-release
     properties:
       NAME: "Lalamatine"
-      PRETTY_NAME: "Lalamatine b19 by Celestial Uprising"
-      VERSION_CODENAME: "birbs"
+      PRETTY_NAME: "Lalamatine b20 by Celestial Uprising"
+      VERSION_CODENAME: "raven"
       ID_LIKE: fedora
       HOME_URL: "https://github.com/celestial-uprising/lalamatine/"
       BUG_REPORT_URL: "https://github.com/celestial-uprising/lalamatine/"
@@ -65,6 +67,7 @@ modules:
         - xorg-x11-drv-nvidia-cuda
         - libva-nvidia-driver
         - zfs
+        - chromium-headless
         - distcc
         - ccache
         - smartmontools
@@ -182,6 +185,7 @@ modules:
         - podman.socket
   - type: script
     scripts:
+      - bash-completion-helper.sh
       - annoyances.sh
       - regenerateinitramfs.sh
   - type: wayblue-signing

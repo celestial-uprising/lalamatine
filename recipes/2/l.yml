@@ -19,6 +19,7 @@ stages:
             bash /tmp/rhun.sh
             bash /tmp/solipsist.sh
             bash /tmp/crow.sh
+            bash /tmp/voxtype.sh
 modules:
   - type: os-release
     properties:
@@ -34,6 +35,25 @@ modules:
     install:
       install-weak-deps: false
       packages:
+        - gtkmm30
+        - gtk-layer-shell
+        - jsoncpp
+        - fmt
+        - spdlog
+        - libxkbcommon
+        - libdbusmenu-gtk3
+        - wireplumber-libs
+        - pulseaudio-libs
+        - pipewire-jack-audio-connection-kit-libs
+        - playerctl-libs
+        - libnl3
+        - upower-libs
+        - libinput
+        - libevdev
+        - systemd-libs
+        - luajit 
+        - lua-lgi
+        - wtype
         - fontconfig-devel 
         - libxkbcommon-devel
         - libxcb-devel
@@ -108,6 +128,7 @@ modules:
     dest: /usr/share/
   - type: script
     scripts:
+      - voxtype-configure.sh
       - twilight.sh
       - annoyances-2.sh
   - type: files
