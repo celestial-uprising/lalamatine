@@ -19,7 +19,6 @@ stages:
             bash /tmp/rhun.sh
             bash /tmp/solipsist.sh
             bash /tmp/crow.sh
-            bash /tmp/voxtype.sh
 modules:
   - type: os-release
     properties:
@@ -104,7 +103,6 @@ modules:
     dest: /usr/share/
   - type: script
     scripts:
-      - voxtype-configure.sh
       - twilight.sh
       - annoyances-2.sh
   - type: files
