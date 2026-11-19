@@ -123,7 +123,6 @@ modules:
         - sddm.service
   - type: script
     scripts:
-      - perm-fix.sh
       - regenerateinitramfs.sh
   - type: wayblue-signing
     source: local
