@@ -37,12 +37,10 @@ modules:
         - dnsmasq
         - tuned
         - numactl
-        - usbutils
         - qemu-block-curl
         - tuned-ppd
         - vulkan-validation-layers
         - vulkan-tools
-        - ffmpeg
   - type: files
     files:
       - source: extras/99-cpu-governor.rules

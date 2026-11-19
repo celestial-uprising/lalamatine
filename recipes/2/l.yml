@@ -83,8 +83,6 @@ modules:
         - kitty
         - zathura
         - zathura-plugins-all
-        - ffmpeg
-        - ffmpegthumbnailer
         - remmina
         - virt-manager
         - headsetcontrol
