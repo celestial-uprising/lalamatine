@@ -30,10 +30,13 @@ modules:
   - type: dnf
     repos:
       copr:
+        - scottames/voxtype
         - archjun/mgba
     install:
       install-weak-deps: false
       packages:
+        - wtype
+        - voxtype
         - waybar
         - loupe
         - clapper

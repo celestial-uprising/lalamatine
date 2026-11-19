@@ -10,6 +10,8 @@ stages:
         snippets:
           - RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
           - RUN dnf install -y https://zfsonlinux.org/fedora/zfs-release-3-1.fc44.noarch.rpm
+          - RUN sed -i -E '/^\[rpmfusion-free(-updates)?\]/a includepkgs=*nvidia*,*vaapi*\nexcludepkgs=ffmpeg*,libav*' /etc/yum.repos.d/rpmfusion-free*.repo
+          - RUN sed -i -E '/^\[rpmfusion-nonfree(-updates)?\]/a includepkgs=*nvidia*,*cuda*\nexcludepkgs=ffmpeg*,libav*' /etc/yum.repos.d/rpmfusion-nonfree*.repo
           - RUN export KVER=$(cd /usr/lib/modules && echo *) && dnf install -y akmod-nvidia zfs-dkms
           - RUN export KVER=$(cd /usr/lib/modules && echo *) && akmods --kernels $KVER --force && dkms autoinstall -k $KVER && dnf clean all
   - name: builder
@@ -60,6 +62,8 @@ modules:
     snippets:
       - RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
       - RUN dnf install -y https://zfsonlinux.org/fedora/zfs-release-3-1.fc44.noarch.rpm
+      - RUN sed -i -E '/^\[rpmfusion-free(-updates)?\]/a includepkgs=*nvidia*,*vaapi*\nexcludepkgs=ffmpeg*,libav*' /etc/yum.repos.d/rpmfusion-free*.repo
+      - RUN sed -i -E '/^\[rpmfusion-nonfree(-updates)?\]/a includepkgs=*nvidia*,*cuda*\nexcludepkgs=ffmpeg*,libav*' /etc/yum.repos.d/rpmfusion-nonfree*.repo
   - type: dnf
     install:
       install-weak-deps: false
@@ -67,6 +71,7 @@ modules:
         - xorg-x11-drv-nvidia-cuda
         - libva-nvidia-driver
         - zfs
+        - mpv
         - chromium-headless
         - distcc
         - ccache
@@ -178,6 +183,11 @@ modules:
     scripts:
       - bash-completion-helper.sh
       - annoyances.sh
+  - type: containerfile
+    snippets:
+      - RUN dnf remove -y rpmfusion-free-release rpmfusion-nonfree-release && rm -f /etc/yum.repos.d/rpmfusion*.repo && dnf clean all
+  - type: script
+    scripts:
       - regenerateinitramfs.sh
   - type: wayblue-signing
     source: local
